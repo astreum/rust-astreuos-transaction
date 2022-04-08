@@ -1,0 +1,15 @@
+[package]
+name = "astreuos-transaction"
+version = "0.1.0"
+edition = "2021"
+license = "MIT"
+description = "Astreuos Transaction is a library for encoding, decoding and verifying transactions for the Astreuos Blockchain."
+repository = "https://github.com/astreuos/rust-astreuos-transaction"
+readme = "README.md"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+astro-format = "0.2.0"
+fides = "2.2.0"
+opis = "3.0.7"
