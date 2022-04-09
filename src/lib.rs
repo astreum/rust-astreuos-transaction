@@ -54,19 +54,13 @@ impl Transaction {
         let set = decode(&arg);
 
         if set.len() == 8 {
-
-            let recipient: [u8; 32] = set[2].clone().try_into().unwrap_or(Err("Recipient error!")?);
-
-            let sender: [u8; 32] = set[3].clone().try_into().unwrap_or(Err("Sender error!")?);
-
-            let signature: [u8; 64] = set[4].clone().try_into().unwrap_or(Err("Signature error!")?);
             
             let tx = Transaction {
                 chain: Int::from_bytes(&set[0]),
                 counter: Int::from_bytes(&set[1]),
-                recipient: recipient,
-                sender: sender,
-                signature: signature,
+                recipient: set[2].clone().try_into().unwrap_or(Err("Recipient error!")?),
+                sender: set[3].clone().try_into().unwrap_or(Err("Sender error!")?),
+                signature: set[4].clone().try_into().unwrap_or(Err("Signature error!")?),
                 solar_limit: Int::from_bytes(&set[5]),
                 solar_price: Int::from_bytes(&set[6]),
                 value: Int::from_bytes(&set[7])
@@ -82,7 +76,7 @@ impl Transaction {
 
     pub fn to_bytes(&self) -> Vec<u8> {
         
-        let set = vec![
+        encode(&vec![
             self.chain.to_bytes(),
             self.counter.to_bytes(),
             self.recipient.to_vec(),
@@ -91,9 +85,7 @@ impl Transaction {
             self.solar_limit.to_bytes(),
             self.solar_price.to_bytes(),
             self.value.to_bytes()
-        ];
-
-        encode(&set)
+        ])
 
     }
 
