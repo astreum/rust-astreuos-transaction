@@ -1,6 +1,6 @@
 [package]
 name = "astreuos-transaction"
-version = "0.1.0"
+version = "0.2.0"
 edition = "2021"
 license = "MIT"
 description = "Astreuos Transaction is a library for encoding, decoding and verifying transactions for the Astreuos Blockchain."
